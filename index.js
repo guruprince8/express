@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import constrollers from "./controller.js";
+import constrollers from "./kafka/controller.js";
 // import KafkaConsumer from "./consumer.js";
-import {GROUP_ID, TOPIC_NAME} from "./constants.js";
+import {GROUP_ID, TOPIC_NAME} from "./kafka/constants.js";
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -20,7 +20,7 @@ app.post("/api/send", jsonParser, constrollers.sendMessageToKafka);
 //     console.log("Topic: ",topic,"Partition", partition)
 //     console.log("📨 Receive message: ",  value);
 // });
-
-app.listen(3001, () => {
-    console.log(`Server is running on port 8080.`);
+const PORT = 3001
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
